@@ -10,7 +10,6 @@ public enum TagListType
 
 public class DestroyedOnCollision : MonoBehaviour
 {
-
     [SerializeField]
     private TagListType tagListType = TagListType.Blacklist;
 
@@ -29,8 +28,7 @@ public class DestroyedOnCollision : MonoBehaviour
             // Destroy if it's a Blacklist and the tag IS in the Blacklist
             Destroy(gameObject);
         }
-        else if (tagListType == TagListType.Whitelist 
-            && !tagInList)
+        else if (tagListType == TagListType.Whitelist && !tagInList)
         {
             // Destroy if it's a Whitelist and the tag is NOT in the Whitelist
             Destroy(gameObject);
