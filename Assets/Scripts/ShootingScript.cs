@@ -20,7 +20,6 @@ public class ShootingScript : MonoBehaviour
             + bullet.GetComponent<Renderer>().bounds.size.y / 2; // Plus half of the bullet size
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButton("Fire1"))

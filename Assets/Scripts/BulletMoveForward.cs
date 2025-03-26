@@ -7,14 +7,14 @@ public class BulletMoveForward : MonoBehaviour
 
     private float initialVelocity = 5f;
 
-    private Rigidbody2D ourRigidbody;
+    private Rigidbody2D rb;
 
     // Use this for initialization
     void Start()
     {
-        ourRigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
 
-        ourRigidbody.velocity = Vector2.up * initialVelocity;
+        rb.velocity = Vector2.up * initialVelocity;
     }
 
     // Update is called once per frame
@@ -22,6 +22,6 @@ public class BulletMoveForward : MonoBehaviour
     {
         Vector2 ForceToAdd = Vector2.up * acceleration * Time.deltaTime;
 
-        ourRigidbody.AddForce(ForceToAdd);
+        rb.AddForce(ForceToAdd);
     }
 }
