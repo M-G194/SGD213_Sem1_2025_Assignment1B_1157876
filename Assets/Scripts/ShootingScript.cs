@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ShootingScript : MonoBehaviour
@@ -20,23 +20,18 @@ public class ShootingScript : MonoBehaviour
             + bullet.GetComponent<Renderer>().bounds.size.y / 2; // Plus half of the bullet size
     }
 
-    void Update()
+    public void Shoot()
     {
-        if (Input.GetButton("Fire1"))
+        float CurrentTime = Time.time;
+
+        // Have a delay so we don't shoot too many bullets
+        if (CurrentTime - lastFiredTime > fireDelay)
         {
-            float CurrentTime = Time.time;
+            Vector2 spawnPosition = new Vector2(transform.position.x, transform.position.y + bulletOffset);
 
-            // Have a delay so we don't shoot too many bullets
-            if (CurrentTime - lastFiredTime > fireDelay)
-            {
-                Vector2 spawnPosition = new Vector2(transform.position.x, transform.position.y + bulletOffset);
+            Instantiate(bullet, spawnPosition, transform.rotation);
 
-                Instantiate(bullet, spawnPosition, transform.rotation);
-
-                lastFiredTime = CurrentTime;
-            }
-
-            //print("Shoot!");
+            lastFiredTime = CurrentTime;
         }
     }
 

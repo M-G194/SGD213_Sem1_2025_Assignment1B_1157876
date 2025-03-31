@@ -12,16 +12,10 @@ public class PlayerMovementScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    void Update()
+    
+    public void HorizontalMovement(float HorizontalInput)
     {
-        // Apply movement from input
-        float HorizontalInput = Input.GetAxis("Horizontal");
-
-        if (HorizontalInput != 0.0f)
-        {
-            Vector2 moveForce = Vector2.right * HorizontalInput * moveSpeed * Time.deltaTime;
-            rb.AddForce(moveForce);
-        } 
+        Vector2 moveForce = Vector2.right * HorizontalInput * moveSpeed * Time.deltaTime;
+        rb.AddForce(moveForce);
     }
 }
