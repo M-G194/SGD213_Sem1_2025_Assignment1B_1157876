@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
 
-    private PlayerMovementScript playerMovementScript;
+    private MovingScript movingScript;
     private ShootingScript shootingScript;
+
+    [SerializeField]
+    private float moveSpeed = 5000f;
 
     void Start()
     {
-        playerMovementScript = GetComponent<PlayerMovementScript>();
+        movingScript = GetComponent<MovingScript>();
         shootingScript = GetComponent<ShootingScript>();
     }
 
@@ -21,9 +24,11 @@ public class PlayerInput : MonoBehaviour
 
         if (HorizontalInput != 0.0f)
         {
-            if (playerMovementScript != null)
+            if (movingScript != null)
             {
-                playerMovementScript.HorizontalMovement(HorizontalInput);
+                var moveForce = new Vector2(HorizontalInput * moveSpeed, 0f);
+
+                movingScript.Move(moveForce);
             }
             else
             {
