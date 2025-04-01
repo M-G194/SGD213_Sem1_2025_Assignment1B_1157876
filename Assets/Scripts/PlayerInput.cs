@@ -24,10 +24,12 @@ public class PlayerInput : MonoBehaviour
 
         if (HorizontalInput != 0.0f)
         {
+            // Check if the moving script component is applied
             if (movingScript != null)
             {
+                // Combine the player input (-1.0 to 1.0) with the move speed
                 var moveForce = new Vector2(HorizontalInput * moveSpeed, 0f);
-
+                // Then move with that force value
                 movingScript.Move(moveForce);
             }
             else
