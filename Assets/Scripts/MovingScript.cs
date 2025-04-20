@@ -8,7 +8,7 @@ public class MovingScript : MonoBehaviour
     private Vector2 passiveAcceleration = Vector2.zero;
 
     [SerializeField]
-    private Vector2 initialVelocity = Vector2.zero;
+    public Vector2 initialVelocity = Vector2.zero;
 
     private Rigidbody2D rb;
 

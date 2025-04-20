@@ -60,13 +60,14 @@ public class PlayerInput : MonoBehaviour
         // Shooting
         if (Input.GetButton("Fire1"))
         {
-            if (shootingScript != null)
+            if (weapon != null)
             {
-                shootingScript.Shoot();
+                weapon.Shoot();
+                //shootingScript.Shoot();
             }
             else
             {
-                Debug.Log("Shooting script not found!");
+                Debug.Log("Weapon script not found!");
             }
         }
     }
