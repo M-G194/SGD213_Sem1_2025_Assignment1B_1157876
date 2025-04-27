@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class EngineBase : MonoBehaviour
 {
-    // acceleration indicates how fast the enemy accelerates
+    // how fast this object accelerates
     [SerializeField]
     private float acceleration = 5000f;
+
+    // the velocity this object has when it loads into the scene
+    [SerializeField]
+    public Vector2 initialVelocity = Vector2.zero;
 
     // local references
     private Rigidbody2D ourRigidbody;
@@ -15,6 +19,8 @@ public class EngineBase : MonoBehaviour
     {
         // populate ourRigidbody
         ourRigidbody = GetComponent<Rigidbody2D>();
+
+        ourRigidbody.velocity = initialVelocity;
     }
 
     /// <summary>

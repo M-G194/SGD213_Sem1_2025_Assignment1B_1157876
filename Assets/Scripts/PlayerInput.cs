@@ -9,7 +9,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
 
-    private MovingScript movingScript;
+    private EngineBase engineBase;
     private ShootingScript shootingScript;
     private WeaponBase weapon;
 
@@ -26,12 +26,10 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private float moveSpeed = 5000f;
 
     void Start()
     {
-        movingScript = GetComponent<MovingScript>();
+        engineBase = GetComponent<EngineBase>();
         shootingScript = GetComponent<ShootingScript>();
         weapon = GetComponent<WeaponBase>();
     }
@@ -44,12 +42,12 @@ public class PlayerInput : MonoBehaviour
         if (HorizontalInput != 0.0f)
         {
             // Check if the moving script component is applied
-            if (movingScript != null)
+            if (engineBase != null)
             {
-                // Combine the player input (-1.0 to 1.0) with the move speed
-                var moveForce = new Vector2(HorizontalInput * moveSpeed, 0f);
+                // Turn the player input (-1.0 to 1.0) into a Vector2 direction
+                var direction = new Vector2(HorizontalInput, 0f);
                 // Then move with that force value
-                movingScript.Move(moveForce);
+                engineBase.Accelerate(direction);
             }
             else
             {
