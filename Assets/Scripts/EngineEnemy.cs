@@ -4,30 +4,34 @@ using UnityEngine;
 
 public class EngineEnemy : EngineBase
 {
-    private Vector2 movementDirection;
-
-    
     private WeaponBase weapon;
-    
-    
+
+    // The direction in which the enemy moves when it spawns
+    private Vector2 initialMovement;
+
+    // How fast the enemy moves when it spawns
+    public float initialMovementSpeed = 1.0f;
 
     void Start()
     {
         weapon = GetComponent<WeaponBase>();
         ourRigidbody = GetComponent<Rigidbody2D>();
 
-        // get a random direction between South-East and South-West
+        // Get a random direction between South-East and South-West
         float x = Random.Range(-0.5f, 0.5f);
         float y = -0.5f;
-        movementDirection = new Vector2(x, y).normalized; // ensure it is normalised
+        // Ensure it is normalised
+        initialMovement = new Vector2(x, y).normalized;
+        // Adjust the movement speed
+        initialMovement *= initialMovementSpeed;
         
-        // move our enemy
-        updateVelocity(movementDirection);
+        // Move our enemy
+        updateVelocity(initialMovement);
     }
 
     // Update is called once per frame
     void Update () {
-        // shoot if we have a IWeapon component attached
+        // Shoot if we have a weapon component attached
         if (weapon != null) {
             weapon.Shoot();
         }

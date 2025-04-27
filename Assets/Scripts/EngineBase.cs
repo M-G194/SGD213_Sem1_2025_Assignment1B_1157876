@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class EngineBase : MonoBehaviour
 {
-    // how fast this object accelerates
+    // How fast this enemy accelerates
     [SerializeField]
     public float acceleration = 5000f;
 
-    // the velocity this object has when it loads into the scene
+    // The velocity this object has when it loads into the scene
     [SerializeField]
     public Vector2 initialVelocity = Vector2.zero;
 
-    // local references
+    // Local references
+    // This needs to be public for EngineEnemy, but doesn't need to be seen in the editor
     [HideInInspector]
     public Rigidbody2D ourRigidbody;
 
     void Start()
     {
-        // populate ourRigidbody
         ourRigidbody = GetComponent<Rigidbody2D>();
 
+        // Set the initial velocity
         updateVelocity(initialVelocity);
     }
 
@@ -36,9 +37,9 @@ public class EngineBase : MonoBehaviour
     /// <param name="horizontalInput">A direction vector, expected to be a unit vector (magnitude of 1).</param>
     public void Accelerate(Vector2 direction)
     {
-        //calculate our force to add
+        // Calculate our force to add
         Vector2 forceToAdd = direction * acceleration * Time.deltaTime;
-        // apply forceToAdd to ourRigidbody
+        // Apply forceToAdd to ourRigidbody
         ourRigidbody.AddForce(forceToAdd);
     }
 }

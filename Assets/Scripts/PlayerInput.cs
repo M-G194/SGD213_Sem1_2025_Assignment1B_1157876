@@ -8,11 +8,8 @@ using UnityEngine;
 /// </summary>
 public class PlayerInput : MonoBehaviour
 {
-
     private EngineBase engineBase;
-    private ShootingScript shootingScript;
     private WeaponBase weapon;
-
     public WeaponBase Weapon
     {
         get
@@ -30,7 +27,6 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         engineBase = GetComponent<EngineBase>();
-        shootingScript = GetComponent<ShootingScript>();
         weapon = GetComponent<WeaponBase>();
     }
 
@@ -61,7 +57,6 @@ public class PlayerInput : MonoBehaviour
             if (weapon != null)
             {
                 weapon.Shoot();
-                //shootingScript.Shoot();
             }
             else
             {
@@ -77,7 +72,7 @@ public class PlayerInput : MonoBehaviour
     /// <param name="weaponType">The given weaponType to swap our current weapon to, this is an enum in WeaponBase.cs</param>
     public void SwapWeapon(WeaponType weaponType)
     {
-        // make a new weapon dependent on the weaponType
+        // Make a new weapon dependent on the weaponType
         WeaponBase newWeapon = null;
         switch (weaponType)
         {
@@ -89,11 +84,11 @@ public class PlayerInput : MonoBehaviour
                 break;
         }
 
-        // update the data of our newWeapon with that of our current weapon
+        // Update the data of our newWeapon with that of our current weapon
         newWeapon.UpdateWeaponControls(weapon);
-        // remove the old weapon
+        // Remove the old weapon
         Destroy(weapon);
-        // set our current weapon to be the newWeapon
+        // Set our current weapon to be the newWeapon
         weapon = newWeapon;
     }
 }

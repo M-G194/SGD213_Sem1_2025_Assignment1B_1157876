@@ -8,14 +8,14 @@ public class WeaponMachineGun : WeaponBase {
     /// Shoot will spawn a new bullet, provided enough time has passed compared to our fireDelay.
     /// </summary>
     public override void Shoot() {
-        // get the current time
+        // Get the current time
         float currentTime = Time.time;
 
-        // if enough time has passed since our last shot compared to our fireDelay, spawn our bullet
+        // If enough time has passed since our last shot compared to our fireDelay, spawn our bullet
         if (currentTime - lastFiredTime > fireDelay) {
-            // create our bullet
+            // Create our bullet
             GameObject newBullet = Instantiate(bullet, bulletSpawnPoint.position, transform.rotation);
-            // update our shooting state
+            // Update our shooting state
             lastFiredTime = currentTime;
         }
     }
