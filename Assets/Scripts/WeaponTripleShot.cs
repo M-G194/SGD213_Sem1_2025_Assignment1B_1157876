@@ -18,8 +18,21 @@ public class WeaponTripleShot : WeaponBase {
             for (int i = 0; i < 3; i++) {
                 // Create our bullet
                 GameObject newBullet = Instantiate(bullet, bulletSpawnPoint.position, transform.rotation);
+
+                // Spread out the direction of the bullets into a triple-shot shape
+                Vector2 direction = new Vector2 (x + 2f * i, 5f);
+
+                // Get the rotation of the bullet spawn point
+                float delta = bulletSpawnPoint.transform.eulerAngles.z * Mathf.Deg2Rad;
+
+                // Rotate the direction of the bullets using the spawn point's rotation
+                direction = new Vector2(
+                    direction.x * Mathf.Cos(delta) - direction.y * Mathf.Sin(delta),
+                    direction.x * Mathf.Sin(delta) + direction.y * Mathf.Cos(delta)
+                );
+
                 // Set their direction
-                newBullet.GetComponent<EngineBase>().initialVelocity = new Vector2(x + 2f * i, 5f);
+                newBullet.GetComponent<EngineBase>().initialVelocity = direction;
             }
 
             // Update our shooting state
