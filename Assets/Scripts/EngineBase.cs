@@ -6,21 +6,27 @@ public class EngineBase : MonoBehaviour
 {
     // how fast this object accelerates
     [SerializeField]
-    private float acceleration = 5000f;
+    public float acceleration = 5000f;
 
     // the velocity this object has when it loads into the scene
     [SerializeField]
     public Vector2 initialVelocity = Vector2.zero;
 
     // local references
-    private Rigidbody2D ourRigidbody;
+    [HideInInspector]
+    public Rigidbody2D ourRigidbody;
 
     void Start()
     {
         // populate ourRigidbody
         ourRigidbody = GetComponent<Rigidbody2D>();
 
-        ourRigidbody.velocity = initialVelocity;
+        updateVelocity(initialVelocity);
+    }
+
+    public void updateVelocity(Vector2 velocity)
+    {
+        ourRigidbody.velocity = velocity;
     }
 
     /// <summary>

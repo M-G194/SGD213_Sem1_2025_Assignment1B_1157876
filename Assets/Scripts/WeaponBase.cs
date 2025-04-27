@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour
 {
-
     [Header("Controls")]
     [SerializeField]
     protected float fireDelay = 1f;
