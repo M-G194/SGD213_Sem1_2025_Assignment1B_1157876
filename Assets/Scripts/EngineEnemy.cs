@@ -12,6 +12,9 @@ public class EngineEnemy : EngineBase
     // How fast the enemy moves when it spawns
     public float initialMovementSpeed = 1.0f;
 
+    [SerializeField]
+    private LayerMask bounceOffLayer;
+
     void Start()
     {
         weapon = GetComponent<WeaponBase>();
@@ -34,6 +37,12 @@ public class EngineEnemy : EngineBase
         // Shoot if we have a weapon component attached
         if (weapon != null) {
             weapon.Shoot();
+        }
+
+        if (ourRigidbody.IsTouchingLayers(bounceOffLayer))
+        {
+            // Move the enemy back a bit
+            ourRigidbody.velocity *= new Vector3 (-1, 1, 1);
         }
     }
 }
